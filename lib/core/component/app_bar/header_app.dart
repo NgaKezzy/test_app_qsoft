@@ -1,20 +1,37 @@
 import 'package:flutter/material.dart';
 
 class HeaderApp extends StatelessWidget implements PreferredSizeWidget {
-  const HeaderApp({super.key, this.title = 'Title'});
+  const HeaderApp({super.key, this.title = 'Title', this.color});
   final String title;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return AppBar(
-      backgroundColor: theme.colorScheme.primary,
+      backgroundColor: color,
       automaticallyImplyLeading: false,
-      title: Center(
-          child: Text(
-        title,
-        style: TextStyle(color: theme.colorScheme.tertiary),
-      )),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              )),
+          Text(
+            title,
+            style: const TextStyle(
+                color: Colors.white, fontWeight: FontWeight.w600),
+          ),
+          const SizedBox(
+            width: 40,
+          )
+        ],
+      ),
     );
   }
 

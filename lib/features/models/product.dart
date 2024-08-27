@@ -1,17 +1,18 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class Product {
-  Product({
-    required this.name,
-    required this.price,
-    required this.count,
-    required this.image,
-    required this.id,
-  });
+  Product(
+      {required this.name,
+      required this.price,
+      required this.count,
+      required this.image,
+      required this.id,
+      this.orderQuantity});
   final int id;
   final String name;
   final double price;
   final int count;
   final String image;
+  int? orderQuantity;
 }
 
 final List<Product> hotProduct = [
