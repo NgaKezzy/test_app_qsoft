@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_app/core/component/loading/loading_widget.dart';
 import 'package:test_app/features/cubit/home_cubit.dart';
 import 'package:test_app/features/models/product.dart';
 import 'package:test_app/features/pages/home/widgets/dialog_set_state.dart';
@@ -14,6 +17,21 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int value = 1;
+  bool isShowLoading = true;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Timer(
+      const Duration(milliseconds: 1500),
+      () {
+        setState(() {
+          isShowLoading = false;
+        });
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,85 +40,91 @@ class _HomePageState extends State<HomePage> {
       onWillPop: () async {
         return false;
       },
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.orange,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const SizedBox(
-                width: 30,
-              ),
-              const Text(
-                'Home',
-                style: TextStyle(fontSize: 22, color: Colors.white),
-              ),
-              IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, Routers.cart);
-                },
-                icon: const Icon(
-                  Icons.shopping_cart,
-                  size: 30,
-                  color: Colors.white,
-                ),
-              )
-            ],
-          ),
-        ),
-        body: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Text(
-                      'Hot Product',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.pink),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    _hotProduct(context),
-                  ],
-                ),
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Text(
-                      'All Product',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.pink),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    _allProduct(context),
-                  ],
-                ),
+      child: isShowLoading
+          ? const Scaffold(
+              body: Center(
+                child: LoadingWidget(),
               ),
             )
-          ],
-        ),
-      ),
+          : Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.orange,
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const SizedBox(
+                      width: 30,
+                    ),
+                    const Text(
+                      'Home',
+                      style: TextStyle(fontSize: 22, color: Colors.white),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, Routers.cart);
+                      },
+                      icon: const Icon(
+                        Icons.shopping_cart,
+                        size: 30,
+                        color: Colors.white,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              body: CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
+                            'Hot Product',
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.pink),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          _hotProduct(context),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
+                            'All Product',
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.pink),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          _allProduct(context),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
     );
   }
 
