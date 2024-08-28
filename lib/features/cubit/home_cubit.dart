@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:test_app/core/config/app_logger.dart';
 import 'package:test_app/features/cubit/home_state.dart';
 import 'package:test_app/features/models/product.dart';
@@ -17,17 +19,40 @@ class HomeCubit extends Cubit<HomeState> {
 
     if (state.carts.isEmpty) {
       emit(state.copyWith(carts: [product]));
+      Fluttertoast.showToast(
+          msg: "Thêm vào giỏ hàng thành công",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+          fontSize: 16.0);
     } else {
       bool isAddCarts = true;
       for (var element in state.carts) {
         if (product.id == element.id) {
           isAddCarts = false;
-          logger.f('Hàng đã có trong giỏ hàng');
+          Fluttertoast.showToast(
+              msg: "Hàng đã có trong giỏ hàng",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16.0);
           return;
         }
       }
       if (isAddCarts) {
         emit(state.copyWith(carts: [...state.carts, product]));
+        Fluttertoast.showToast(
+            msg: "Thêm vào giỏ hàng thành công",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0);
       }
     }
     emit(state.copyWith(status: HomeStatus.success));
@@ -80,5 +105,21 @@ class HomeCubit extends Cubit<HomeState> {
       emit(state.copyWith(status: HomeStatus.success, carts: newCarts));
     }
     totalAmount();
+  }
+
+  void orderAndPayment() {
+    emit(state.copyWith(status: HomeStatus.start));
+    if (state.carts.isNotEmpty) {
+      emit(state
+          .copyWith(carts: [], totalAmount: 0, status: HomeStatus.success));
+      Fluttertoast.showToast(
+          msg: "Thanh toán giỏ hàng thành công",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
   }
 }

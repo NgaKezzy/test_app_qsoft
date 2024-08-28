@@ -92,7 +92,9 @@ class _CartScreenState extends State<CartScreen> {
                       width: width * 0.9,
                       child: MaterialButton(
                           color: Colors.orange,
-                          onPressed: () {},
+                          onPressed: () {
+                            homeCubit.orderAndPayment();
+                          },
                           child: const Text(
                             'Order',
                             style: TextStyle(fontSize: 20, color: Colors.white),
