@@ -6,7 +6,7 @@ class Product {
       required this.count,
       required this.image,
       required this.id,
-      this.orderQuantity});
+      this.orderQuantity = 0});
   final int id;
   final String name;
   final double price;

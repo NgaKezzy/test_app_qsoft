@@ -7,6 +7,12 @@ part of 'home_state.dart';
 // **************************************************************************
 
 abstract class _$HomeStateCWProxy {
+  HomeState totalAmount(double totalAmount);
+
+  HomeState status(HomeStatus status);
+
+  HomeState order(int order);
+
   HomeState carts(List<Product> carts);
 
   HomeState cartValueTextEditingController(
@@ -21,6 +27,9 @@ abstract class _$HomeStateCWProxy {
   /// HomeState(...).copyWith(id: 12, name: "My name")
   /// ````
   HomeState call({
+    double? totalAmount,
+    HomeStatus? status,
+    int? order,
     List<Product>? carts,
     TextEditingController? cartValueTextEditingController,
     bool? isShowError,
@@ -32,6 +41,15 @@ class _$HomeStateCWProxyImpl implements _$HomeStateCWProxy {
   const _$HomeStateCWProxyImpl(this._value);
 
   final HomeState _value;
+
+  @override
+  HomeState totalAmount(double totalAmount) => this(totalAmount: totalAmount);
+
+  @override
+  HomeState status(HomeStatus status) => this(status: status);
+
+  @override
+  HomeState order(int order) => this(order: order);
 
   @override
   HomeState carts(List<Product> carts) => this(carts: carts);
@@ -53,11 +71,27 @@ class _$HomeStateCWProxyImpl implements _$HomeStateCWProxy {
   /// HomeState(...).copyWith(id: 12, name: "My name")
   /// ````
   HomeState call({
+    Object? totalAmount = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
+    Object? order = const $CopyWithPlaceholder(),
     Object? carts = const $CopyWithPlaceholder(),
     Object? cartValueTextEditingController = const $CopyWithPlaceholder(),
     Object? isShowError = const $CopyWithPlaceholder(),
   }) {
     return HomeState(
+      totalAmount:
+          totalAmount == const $CopyWithPlaceholder() || totalAmount == null
+              ? _value.totalAmount
+              // ignore: cast_nullable_to_non_nullable
+              : totalAmount as double,
+      status: status == const $CopyWithPlaceholder() || status == null
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as HomeStatus,
+      order: order == const $CopyWithPlaceholder() || order == null
+          ? _value.order
+          // ignore: cast_nullable_to_non_nullable
+          : order as int,
       carts: carts == const $CopyWithPlaceholder() || carts == null
           ? _value.carts
           // ignore: cast_nullable_to_non_nullable

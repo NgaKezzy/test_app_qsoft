@@ -15,17 +15,9 @@ class Routers {
       case splashPage:
         return MaterialPageRoute(builder: (_) => const SplashPage());
       case homePage:
-        return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (context) => HomeCubit(),
-                  child: const HomePage(),
-                ));
+        return MaterialPageRoute(builder: (_) => const HomePage());
       case cart:
-        return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (context) => HomeCubit(),
-                  child: const CartScreen(),
-                ));
+        return MaterialPageRoute(builder: (_) => const CartScreen());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
