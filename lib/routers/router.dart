@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_app/di/dependency_injection.dart';
 import 'package:test_app/features/cubit/home_cubit.dart';
 import 'package:test_app/features/pages/home/cart/cart_screen.dart';
 import 'package:test_app/features/pages/home/home_page.dart';
@@ -15,9 +16,17 @@ class Routers {
       case splashPage:
         return MaterialPageRoute(builder: (_) => const SplashPage());
       case homePage:
-        return MaterialPageRoute(builder: (_) => const HomePage());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => getIt<HomeCubit>(),
+                  child: const HomePage(),
+                ));
       case cart:
-        return MaterialPageRoute(builder: (_) => const CartScreen());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => getIt<HomeCubit>(),
+                  child: const CartScreen(),
+                ));
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

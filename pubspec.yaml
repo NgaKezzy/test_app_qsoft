@@ -46,6 +46,7 @@ dependencies:
   copy_with_extension: ^5.0.4
   copy_with_extension_gen: ^5.0.4
   fluttertoast: ^8.2.8
+  get_it: ^7.7.0
 
 dev_dependencies:
   flutter_test:

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_app/core/component/loading/loading_widget.dart';
+import 'package:test_app/di/dependency_injection.dart';
 import 'package:test_app/features/cubit/home_cubit.dart';
 import 'package:test_app/features/models/product.dart';
 import 'package:test_app/features/pages/home/widgets/dialog_set_state.dart';
@@ -35,7 +36,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final HomeCubit homeCubit = context.read<HomeCubit>();
     return WillPopScope(
       onWillPop: () async {
         return false;
@@ -232,7 +232,7 @@ class _HomePageState extends State<HomePage> {
   }) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
-    final HomeCubit homeCubit = context.read<HomeCubit>();
+    final HomeCubit homeCubit = getIt<HomeCubit>();
 
     return SizedBox(
       width: width * 0.35,
@@ -304,7 +304,10 @@ class _HomePageState extends State<HomePage> {
       isDismissible: true,
       enableDrag: true,
       builder: (BuildContext context) {
-        return DialogSetState(product: product);
+        return BlocProvider(
+          create: (context) => getIt<HomeCubit>(),
+          child: DialogSetState(product: product),
+        );
       },
     );
   }

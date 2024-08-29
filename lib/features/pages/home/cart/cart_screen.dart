@@ -1,11 +1,7 @@
-import 'dart:ffi';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_app/core/component/app_bar/header_app.dart';
-import 'package:test_app/core/config/app_logger.dart';
+import 'package:test_app/di/dependency_injection.dart';
 import 'package:test_app/features/cubit/home_cubit.dart';
 import 'package:test_app/features/cubit/home_state.dart';
 import 'package:test_app/features/models/product.dart';
@@ -18,18 +14,15 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  late HomeCubit homeCubit;
+  HomeCubit homeCubit = getIt<HomeCubit>();
   @override
   void initState() {
-    homeCubit = context.read<HomeCubit>();
     homeCubit.totalAmount();
-    // TODO: implement initState
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: const HeaderApp(
@@ -38,7 +31,6 @@ class _CartScreenState extends State<CartScreen> {
       ),
       body: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
-          logger.f(homeCubit.state.totalAmount);
           return Column(
             children: [
               Expanded(
@@ -54,7 +46,6 @@ class _CartScreenState extends State<CartScreen> {
                       onDelete: () {
                         homeCubit.removeProductInCarts(index);
                       },
-                      context: context,
                       product: state.carts[index]),
                   separatorBuilder: (context, index) => const SizedBox(
                     height: 10,
@@ -78,11 +69,7 @@ class _CartScreenState extends State<CartScreen> {
                           style: TextStyle(fontSize: 16),
                         ),
                         Text(
-                          context
-                              .watch<HomeCubit>()
-                              .state
-                              .totalAmount
-                              .toString(),
+                          homeCubit.state.totalAmount.toString(),
                           style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w500),
                         ),
@@ -111,8 +98,7 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   Widget _itemProduct(
-      {required BuildContext context,
-      required Product product,
+      {required Product product,
       required VoidCallback onRemove,
       required VoidCallback onAdd,
       required VoidCallback onDelete}) {
@@ -169,7 +155,6 @@ class _CartScreenState extends State<CartScreen> {
                       GestureDetector(
                         onTap: () {
                           Navigator.pop(context);
-                          _dialogBuilder(context, product);
                         },
                         child: Text(
                           product.orderQuantity.toString(),
@@ -223,49 +208,6 @@ class _CartScreenState extends State<CartScreen> {
           ],
         ),
       ),
-    );
-  }
-
-  Future<void> _dialogBuilder(BuildContext context, Product product) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Center(child: Text(product.name)),
-          content: TextFormField(
-            textAlign: TextAlign.center,
-            autofocus: true,
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: const BorderSide(
-                      color: Colors.orange, width: 2, style: BorderStyle.solid),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: const BorderSide(
-                      color: Colors.orange, width: 2, style: BorderStyle.solid),
-                )),
-          ),
-          actions: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                MaterialButton(
-                    color: Colors.orange,
-                    onPressed: () {},
-                    child: const Text(
-                      'Submit',
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    )),
-              ],
-            ),
-          ],
-        );
-      },
     );
   }
 }

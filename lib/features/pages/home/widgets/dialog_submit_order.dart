@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_app/di/dependency_injection.dart';
 import 'package:test_app/features/cubit/home_cubit.dart';
 import 'package:test_app/features/models/product.dart';
 
@@ -17,6 +18,7 @@ class DialogSubmitOrder extends StatefulWidget {
 }
 
 class _DialogSubmitOrderState extends State<DialogSubmitOrder> {
+  // final HomeCubit homeCubit = getIt<HomeCubit>();
   bool isShowError = false;
   @override
   Widget build(BuildContext context) {
@@ -69,8 +71,7 @@ class _DialogSubmitOrderState extends State<DialogSubmitOrder> {
                     } else {
                       Navigator.pop(context);
                       widget.product.orderQuantity = orderQuantity;
-                      context
-                          .read<HomeCubit>()
+                      getIt<HomeCubit>()
                           .addProductToCart(product: widget.product);
                       setState(() {
                         isShowError = false;
