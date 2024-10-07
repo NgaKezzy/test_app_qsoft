@@ -22,7 +22,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Timer(
       const Duration(milliseconds: 1500),
@@ -56,8 +55,11 @@ class _HomePageState extends State<HomePage> {
                       width: 30,
                     ),
                     const Text(
-                      'Home',
-                      style: TextStyle(fontSize: 22, color: Colors.white),
+                      'Sản phẩm',
+                      style: TextStyle(
+                          fontSize: 22,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500),
                     ),
                     IconButton(
                       onPressed: () {
@@ -84,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                             height: 10,
                           ),
                           const Text(
-                            'Hot Product',
+                            'Sản phẩm bán chạy',
                             style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
@@ -147,9 +149,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _allProduct(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
-    final double width = MediaQuery.of(context).size.width;
-
     return GridView.builder(
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
@@ -175,10 +174,11 @@ class _HomePageState extends State<HomePage> {
             topRight: Radius.circular(8),
           ),
           child: Container(
-            height: height * 0.2,
+            height: 130,
             width: width * 0.5,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(),
+            decoration: BoxDecoration(
+              color: Colors.grey.withOpacity(0.2),
+              borderRadius: const BorderRadius.only(),
             ),
             child: Image.asset(
               product.image,
@@ -246,8 +246,9 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               height: height * 0.16,
               width: width * 0.35,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(),
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.2),
+                borderRadius: const BorderRadius.only(),
               ),
               child: Image.asset(
                 product.image,

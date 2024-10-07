@@ -26,7 +26,7 @@ class _CartScreenState extends State<CartScreen> {
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: const HeaderApp(
-        title: 'Cart',
+        title: 'Giỏ hàng',
         color: Colors.orange,
       ),
       body: BlocBuilder<HomeCubit, HomeState>(
@@ -65,7 +65,7 @@ class _CartScreenState extends State<CartScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          'Total price',
+                          'Tổng tiền',
                           style: TextStyle(fontSize: 16),
                         ),
                         Text(
@@ -83,7 +83,7 @@ class _CartScreenState extends State<CartScreen> {
                             homeCubit.orderAndPayment();
                           },
                           child: const Text(
-                            'Order',
+                            'Đặt hàng',
                             style: TextStyle(fontSize: 20, color: Colors.white),
                           )),
                     ),
@@ -153,9 +153,7 @@ class _CartScreenState extends State<CartScreen> {
                           },
                           icon: const Icon(Icons.remove)),
                       GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
+                        onTap: () {},
                         child: Text(
                           product.orderQuantity.toString(),
                           style: const TextStyle(

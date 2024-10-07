@@ -17,14 +17,14 @@ class Routers {
         return MaterialPageRoute(builder: (_) => const SplashPage());
       case homePage:
         return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (context) => getIt<HomeCubit>(),
+            builder: (_) => BlocProvider.value(
+                  value: getIt<HomeCubit>(),
                   child: const HomePage(),
                 ));
       case cart:
         return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (context) => getIt<HomeCubit>(),
+            builder: (_) => BlocProvider.value(
+                  value: getIt<HomeCubit>(),
                   child: const CartScreen(),
                 ));
       default:

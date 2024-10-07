@@ -52,7 +52,7 @@ class _DialogSubmitOrderState extends State<DialogSubmitOrder> {
           ),
           isShowError
               ? const Text(
-                  'Quantity cannot exceed',
+                  'Vượt quá số lượng',
                   style: TextStyle(color: Colors.red),
                 )
               : const SizedBox(),

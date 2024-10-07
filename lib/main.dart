@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_app/di/dependency_injection.dart';
-import 'package:test_app/features/cubit/home_cubit.dart';
 import 'package:test_app/routers/router.dart';
 
 Future<void> main() async {

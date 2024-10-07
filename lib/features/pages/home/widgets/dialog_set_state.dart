@@ -157,7 +157,7 @@ class _DialogSetStateState extends State<DialogSetState> {
                         .addProductToCart(product: widget.product);
                   },
                   child: const Text(
-                    'Add to cart',
+                    'Thêm vào giỏ hàng',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
