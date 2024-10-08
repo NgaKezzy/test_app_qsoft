@@ -39,12 +39,12 @@ class _DialogSubmitOrderState extends State<DialogSubmitOrder> {
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                   borderSide: const BorderSide(
-                      color: Colors.orange, width: 2, style: BorderStyle.solid),
+                         color: Color(0xFF01182e), width: 2, style: BorderStyle.solid),
                 ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                   borderSide: const BorderSide(
-                      color: Colors.orange, width: 2, style: BorderStyle.solid),
+                         color: Color(0xFF01182e), width: 2, style: BorderStyle.solid),
                 )),
           ),
           const SizedBox(
@@ -60,7 +60,7 @@ class _DialogSubmitOrderState extends State<DialogSubmitOrder> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               MaterialButton(
-                  color: Colors.orange,
+                  color: Color(0xFF01182e),
                   onPressed: () {
                     int orderQuantity =
                         int.parse(widget.textEditingController.text);

@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
             )
           : Scaffold(
               appBar: AppBar(
-                backgroundColor: Colors.orange,
+                backgroundColor: const Color(0xFF01182e),
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -110,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                             height: 10,
                           ),
                           const Text(
-                            'All Product',
+                            'Tất cả sản phẩm',
                             style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,

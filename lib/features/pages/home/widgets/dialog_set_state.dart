@@ -132,7 +132,7 @@ class _DialogSetStateState extends State<DialogSetState> {
                         Text(
                           widget.product.price.toString(),
                           style: const TextStyle(
-                              color: Colors.orange,
+                              color: Color(0xFF01182e),
                               fontSize: 16,
                               fontWeight: FontWeight.w600),
                         )
@@ -146,7 +146,7 @@ class _DialogSetStateState extends State<DialogSetState> {
             SizedBox(
               width: width * 0.9,
               child: MaterialButton(
-                  color: Colors.orange,
+                  color: const Color(0xFF01182e),
                   onPressed: () {
                     Navigator.pop(context);
                     setState(() {

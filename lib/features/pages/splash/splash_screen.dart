@@ -27,21 +27,15 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            SizedBox(),
-            Icon(
-              Icons.shopping_cart,
-              size: 100,
-              color: Colors.orange,
-            ),
-            Text('© 2024, QSoft. All rights reserved.')
-          ],
-        ),
-      ),
-    );
+    return Scaffold(
+        body: Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      decoration: const BoxDecoration(
+          color: Color(0xFF01182e),
+          image: DecorationImage(
+            image: AssetImage('assets/images/logo-xmen.png'),
+          )),
+    ));
   }
 }

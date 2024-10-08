@@ -27,7 +27,7 @@ class _CartScreenState extends State<CartScreen> {
     return Scaffold(
       appBar: const HeaderApp(
         title: 'Giỏ hàng',
-        color: Colors.orange,
+        color: Color(0xFF01182e),
       ),
       body: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
@@ -78,7 +78,7 @@ class _CartScreenState extends State<CartScreen> {
                     SizedBox(
                       width: width * 0.9,
                       child: MaterialButton(
-                          color: Colors.orange,
+                          color: const Color(0xFF01182e),
                           onPressed: () {
                             homeCubit.orderAndPayment();
                           },
@@ -196,7 +196,7 @@ class _CartScreenState extends State<CartScreen> {
                   Text(
                     product.price.toString(),
                     style: const TextStyle(
-                        color: Colors.orange,
+                        color: Color(0xFF01182e),
                         fontSize: 16,
                         fontWeight: FontWeight.w600),
                   )
